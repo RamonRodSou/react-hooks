@@ -1,10 +1,22 @@
 import { Button, TextField } from "@material-ui/core";
-import React from "react";
-export default function DadosEntrega () {
+import React, { useState } from "react";
+
+export default function DadosEntrega (aoEnviar) {
+
+    const [cep, setCep]= useState ("")
+    const [endereco, setEndereco]= useState ("")
+    const [numero, setNumero]= useState ("")
+    const [estado, setEstado]= useState ("")
+    const [cidade, setCidade]= useState ("")
 
     return (
-        <form>
+        <form onSubmit={(evento) => {
+            evento.preventDefault()
+            aoEnviar({cep, endereco, numero, estado, cidade})
+        }}>
             <TextField 
+                value={(cep)}
+                onChange={(evento)=> { setCep(evento.target.value)}}
                 id="cep"
                 label="CEP"
                 type="number"
@@ -13,6 +25,8 @@ export default function DadosEntrega () {
                 required
             />
             <TextField 
+                value={(endereco)}
+                onChange={(evento)=> { setEndereco(evento.target.value)}}
                 id="endereco"
                 label="Endereco"
                 type="text"
@@ -22,6 +36,8 @@ export default function DadosEntrega () {
                 required
             />
             <TextField 
+                value={(numero)}
+                onChange={(evento)=> { setNumero(evento.target.value)}}
                 id="numero"
                 label="Numero"
                 type="number"
@@ -29,7 +45,9 @@ export default function DadosEntrega () {
                 margin="normal"
                 required
             />
-            <TextField 
+            <TextField
+                value={(estado)}
+                onChange={(evento)=> { setEstado(evento.target.value)}}
                 id="estado"
                 label="Estado"
                 type="text"
@@ -38,6 +56,8 @@ export default function DadosEntrega () {
                 required
             />
             <TextField 
+                value={(cidade)}
+                onChange={(evento)=> { setCidade(evento.target.value)}}
                 id="cidade"
                 label="Cidade"
                 type="text"
